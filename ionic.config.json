@@ -1,5 +1,7 @@
 {
   "name": "just-in-time",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
