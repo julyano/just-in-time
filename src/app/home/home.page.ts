@@ -2,7 +2,7 @@ import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { AlertController, ModalController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
 import { CalModalPage } from '../pages/cal-modal/cal-modal.page';
-import { CalendarComponent } from 'ionic2-calendar/calendar';
+import { CalendarComponent } from 'ionic2-calendar';
 
 @Component({
   selector: 'app-home',
@@ -15,7 +15,7 @@ export class HomePage implements OnInit {
   viewTitle: string;
 
   calendar = {
-    mode: 'month',
+    mode: 'month' as const,
     currentDate: new Date(),
   };
 

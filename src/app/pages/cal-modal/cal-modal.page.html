@@ -63,7 +63,7 @@
     [currentDate]="calendar.currentDate"
     (onTitleChanged)="onViewTitleChanged($event)"
     (onTimeSelected)="onTimeSelected($event)"
-    lockSwipes="true"
+    [lockSwipes]=true
   >
   </calendar>
 </ion-content>

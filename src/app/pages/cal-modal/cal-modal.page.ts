@@ -1,5 +1,6 @@
 import { Component, AfterViewInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
+import { CalendarMode } from 'ionic2-calendar/calendar';
 
 @Component({
   selector: 'app-cal-modal',
@@ -8,7 +9,7 @@ import { ModalController } from '@ionic/angular';
 })
 export class CalModalPage implements AfterViewInit {
   calendar = {
-    mode: 'month',
+    mode: 'month' as CalendarMode,
     currentDate: new Date()
   };
   viewTitle: string;

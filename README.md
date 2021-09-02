@@ -1,3 +1,13 @@
+Inside of the project root directory run the following command to install project depedencies:
+
+```bash
+$ npm install
+$ cordova platform add ios
+$ cordova platform add android
+$ ionic cordova resources ios
+$ ionic cordova resources android
+```
+
 Then you run it
 
 For **iOS**, using emulator:
