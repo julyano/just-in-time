@@ -10,8 +10,8 @@ import { NgCalendarModule  } from 'ionic2-calendar';
 import { CalModalPageModule } from '../pages/cal-modal/cal-modal.module';
 
 import { registerLocaleData } from '@angular/common';
-import localeDe from '@angular/common/locales/de';
-registerLocaleData(localeDe);
+import localePt from '@angular/common/locales/pt';
+registerLocaleData(localePt);
 
 @NgModule({
   imports: [
@@ -24,7 +24,7 @@ registerLocaleData(localeDe);
   ],
   declarations: [HomePage],
   providers: [
-    { provide: LOCALE_ID, useValue: 'de-DE' }
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
   ]
 })
 export class HomePageModule {}
