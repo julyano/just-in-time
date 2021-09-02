@@ -23,6 +23,7 @@ export class CalModalPage implements AfterViewInit {
   };
 
   modalReady = false;
+  public lockSwipes = false;
 
   constructor(private modalCtrl: ModalController) { }
 
@@ -30,6 +31,10 @@ export class CalModalPage implements AfterViewInit {
     setTimeout(() => {
       this.modalReady = true;
     }, 0);
+
+    setTimeout(() => {
+        this.lockSwipes = true;
+    },100);
   }
 
   save() {
