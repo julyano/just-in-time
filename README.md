@@ -1,12 +1,19 @@
+### Runing the app
+
+Before you run it, you need to install those packages globally:  
+
+```bash
+$ npm i -g @ionic/cli
+$ npm i -g cordova
+$ npm i -g cordova-res
+$ npm i -g native-run
+```
+
 Inside of the project root directory run the following command to install project depedencies:
 
 ```bash
 $ nvm use 12.22.6
-$ npm install
-$ cordova platform add ios
-$ cordova platform add android
-$ ionic cordova resources ios
-$ ionic cordova resources android
+$ ionic repair
 ```
 
 Then you run it
