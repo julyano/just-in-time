@@ -75,7 +75,8 @@ export class HomePage implements OnInit {
         component: HourModalPage,
         backdropDismiss: false,
         componentProps: {
-          timeList: this.timeList
+          timeList: this.timeList,
+          selectedDate: this.selectedDate
         }
       });
 

@@ -5,12 +5,12 @@
         <ion-icon name="close"></ion-icon>
       </button>
     </ion-buttons>
-    <ion-title>Event Details</ion-title>
+    <ion-title>Event Details - {{ selectedDate }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <button ion-button full icon-left (click)="save()">
+  <button ion-button full icon-left (click)="insert()">
     <ion-icon name="checkmark"></ion-icon> Add Time
   </button>
 
@@ -19,9 +19,22 @@
       No data available
     </ion-label>
   </div>
-  <ion-list>
-    <ion-item *ngFor="let time of timeList">
+  <ion-reorder-group *ngFor="let time of timeList" disabled="false">
+    <ion-item>
+      <ion-reorder slot="start"></ion-reorder>
       <ion-label>{{ time }}</ion-label>
+      <ion-button color="light" slot="end">
+        <ion-icon slot="icon-only" name="create"></ion-icon>
+      </ion-button>
+      <ion-button color="light" slot="end">
+        <ion-icon slot="icon-only" name="trash"></ion-icon>
+      </ion-button>
     </ion-item>
-  </ion-list>
+  </ion-reorder-group>
 </ion-content>
+
+<ion-footer>
+  <ion-button expand="block" color="secondary" (click)="save()">
+    Save
+  </ion-button>
+</ion-footer>

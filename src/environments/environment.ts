@@ -3,7 +3,16 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  date: {
+    defaultFormat: 'YYYY-MM-DD'
+  },
+  time: {
+    defaultFormat: 'HH:mm:ss'
+  },
+  datetime: {
+    defaultFormat: 'YYYY-MM-DD HH:mm:ss'
+  },
 };
 
 /*
