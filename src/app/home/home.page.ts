@@ -157,7 +157,10 @@ export class HomePage implements OnInit {
     const modal = await this.modalCtrl.create({
       component: CalModalPage,
       cssClass: 'cal-modal',
-      backdropDismiss: false
+      backdropDismiss: false,
+      componentProps: {
+        selectedDate: this.selectedDate
+      },
     });
 
     await modal.present();

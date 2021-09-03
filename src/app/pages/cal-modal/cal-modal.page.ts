@@ -13,6 +13,7 @@ export class CalModalPage implements AfterViewInit {
     currentDate: new Date()
   };
   viewTitle: string;
+  selectedDate: any;
 
   event = {
     title: '',
