@@ -15,6 +15,10 @@ const routes: Routes = [
     path: 'cal-modal',
     loadChildren: () => import('./pages/cal-modal/cal-modal.module').then( m => m.CalModalPageModule)
   },
+  {
+    path: 'hour-modal',
+    loadChildren: () => import('./pages/hour-modal/hour-modal.module').then( m => m.HourModalPageModule)
+  },
 ];
 
 @NgModule({

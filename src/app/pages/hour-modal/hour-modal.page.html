@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons start>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+    <ion-title>Event Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <button ion-button full icon-left (click)="save()">
+    <ion-icon name="checkmark"></ion-icon> Add Time
+  </button>
+
+  <div *ngIf="!timeList.length">
+    <ion-label>
+      No data available
+    </ion-label>
+  </div>
+  <ion-list>
+    <ion-item *ngFor="let time of timeList">
+      <ion-label>{{ time }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

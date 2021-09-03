@@ -8,6 +8,7 @@ import { HomePageRoutingModule } from './home-routing.module';
 
 import { NgCalendarModule  } from 'ionic2-calendar';
 import { CalModalPageModule } from '../pages/cal-modal/cal-modal.module';
+import { HourModalPageModule } from './../pages/hour-modal/hour-modal.module';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
@@ -20,7 +21,8 @@ registerLocaleData(localePt);
     IonicModule,
     HomePageRoutingModule,
     NgCalendarModule,
-    CalModalPageModule
+    CalModalPageModule,
+    HourModalPageModule
   ],
   declarations: [HomePage],
   providers: [

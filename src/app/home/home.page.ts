@@ -1,8 +1,12 @@
 import { Component, ViewChild, OnInit, Inject, LOCALE_ID } from '@angular/core';
-import { AlertController, ModalController } from '@ionic/angular';
 import { formatDate } from '@angular/common';
-import { CalModalPage } from '../pages/cal-modal/cal-modal.page';
+
+import { AlertController, ModalController } from '@ionic/angular';
+
 import { CalendarComponent } from 'ionic2-calendar';
+
+import { CalModalPage } from '../pages/cal-modal/cal-modal.page';
+import { HourModalPage } from '../pages/hour-modal/hour-modal.page';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +24,8 @@ export class HomePage implements OnInit {
   };
 
   selectedDate: Date;
-
+  public timeList = [];
+  private initHourModal = false;
 
   constructor(
     private alertCtrl: AlertController,
@@ -33,15 +38,18 @@ export class HomePage implements OnInit {
   // Change current month/week/day
   next() {
     this.myCal.slideNext();
+    this.initHourModal = false;
   }
 
   back() {
     this.myCal.slidePrev();
+    this.initHourModal = false;
   }
 
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
+    this.initHourModal = false;
   }
 
   // Calendar event was clicked
@@ -57,6 +65,26 @@ export class HomePage implements OnInit {
       buttons: ['OK'],
     });
     alert.present();
+  }
+
+  async onTimeSelected(ev) {
+    this.selectedDate = ev.selectedTime;
+
+    if (this.initHourModal) {
+      const modal = await this.modalCtrl.create({
+        component: HourModalPage,
+        backdropDismiss: false,
+        componentProps: {
+          timeList: this.timeList
+        }
+      });
+
+      await modal.present();
+
+      const { data } = await modal.onDidDismiss();
+    }
+
+    this.initHourModal = true;
   }
 
   createRandomEvents() {
@@ -122,6 +150,7 @@ export class HomePage implements OnInit {
 
   removeEvents() {
     this.eventSource = [];
+    this.initHourModal = false;
   }
 
   async openCalModal() {
