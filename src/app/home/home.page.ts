@@ -25,7 +25,7 @@ export class HomePage implements OnInit {
 
   selectedDate: Date;
   public timeList = [];
-  private initHourModal = false;
+  // private initHourModal = false;
 
   constructor(
     private alertCtrl: AlertController,
@@ -38,18 +38,18 @@ export class HomePage implements OnInit {
   // Change current month/week/day
   next() {
     this.myCal.slideNext();
-    this.initHourModal = false;
+    // this.initHourModal = false;
   }
 
   back() {
     this.myCal.slidePrev();
-    this.initHourModal = false;
+    // this.initHourModal = false;
   }
 
   // Selected date reange and hence title changed
   onViewTitleChanged(title) {
     this.viewTitle = title;
-    this.initHourModal = false;
+    // this.initHourModal = false;
   }
 
   // Calendar event was clicked
@@ -68,14 +68,31 @@ export class HomePage implements OnInit {
   }
 
   async onTimeSelected(ev) {
+    this.openHourModal(ev);
+  }
+
+  public async openHourModal(ev: any): Promise<void> {
     this.selectedDate = ev.selectedTime;
 
-    if (this.initHourModal) {
+    // if (this.initHourModal) {
+      let timeList = [];
+
+      this.eventSource.forEach((event => {
+        console.log({
+          st1: event.startTime,
+          st2: this.selectedDate
+        });
+
+        if (event.startTime === this.selectedDate) {
+          timeList = event.timeList;
+        }
+      }));
+
       const modal = await this.modalCtrl.create({
         component: HourModalPage,
         backdropDismiss: false,
         componentProps: {
-          timeList: this.timeList,
+          timeList,
           selectedDate: this.selectedDate
         }
       });
@@ -83,9 +100,40 @@ export class HomePage implements OnInit {
       await modal.present();
 
       const { data } = await modal.onDidDismiss();
-    }
 
-    this.initHourModal = true;
+      if (data && data.event.timeList) {
+        //timeList
+        console.log(data);
+        const event = data.event;
+        if (event.allDay) {
+          const start = event.startTime;
+          /*event.startTime = new Date(
+            Date.UTC(
+              start.getUTCFullYear(),
+              start.getUTCMonth(),
+              start.getUTCDate()
+            )
+          );
+          event.endTime = new Date(
+            Date.UTC(
+              start.getUTCFullYear(),
+              start.getUTCMonth(),
+              start.getUTCDate() + 1
+            )
+          );*/
+        }
+
+        const index = this.eventSource.findIndex((ev2: any) => ev2.startTime === this.selectedDate);
+
+        if (index !== -1) {
+          this.eventSource[index] = event;
+        }
+
+        this.myCal.loadEvents();
+      }
+    // }
+
+    // this.initHourModal = true;
   }
 
   createRandomEvents() {
@@ -151,7 +199,7 @@ export class HomePage implements OnInit {
 
   removeEvents() {
     this.eventSource = [];
-    this.initHourModal = false;
+    // this.initHourModal = false;
   }
 
   async openCalModal() {
@@ -189,6 +237,11 @@ export class HomePage implements OnInit {
         this.eventSource.push(result.data.event);
         this.myCal.loadEvents();
       }
+
+      console.log({
+        events: this.eventSource
+      });
+
     });
   }
 
